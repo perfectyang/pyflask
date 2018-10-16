@@ -1,0 +1,4 @@
+<!doctype html>
+{% for item in result %}
+      <p><a href="{{ item.url }}">{{item.id}}.{{ item.title }}</a></p>
+  {% endfor %}
