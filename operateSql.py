@@ -1,5 +1,5 @@
 from pysql import Pysql as ySql
-
+from scrawblog import startWeb
 class OperateSql():
     def __init__(self):
         self.db = ySql({
@@ -15,18 +15,19 @@ class OperateSql():
     # def closeDb(self):
     #     self.db.closeConnect()
 
-data_list = []
+data_list = startWeb()
 
-for i in range(10, 20):
-    data_list.append({
-      "title": "title-{}".format(i),
-      "url": "http://www.baidu.com/pages/{}".format(i),
-      "play": "http://www.baidu.com/article?index={}".format(i)
-    })
+# for i in range(10, 20):
+#     data_list.append({
+#       "title": "title-{}".format(i),
+#       "url": "http://www.baidu.com/pages/{}".format(i),
+#       "play": "http://www.baidu.com/article?index={}".format(i)
+#     })
 connectSql = OperateSql()
-# for eachData in data_list:
-#     connectSql.insertData(eachData)
-# connectSql.closeDb()
+for eachData in data_list:
+    sql = "INSERT INTO video(title, url, play) VALUES ('{title}', '{url}', '{play}')".format(title=params["title"], url=params["url"], play=params["play"])
+    connectSql.insertData(eachData)
+connectSql.closeDb()
 # print('插入数据成功!')
 # sql = "select * from video"
 # sql2 = "UPDATE video set title='我改的2222' where id=13"
